@@ -53,5 +53,15 @@ services:
     depends_on:
       - drone-server
 
+  registry:
+    container_name: registry
+    restart: always
+    image: 'registry:2'
+    ports:
+      - "5000:5000"
+    volumes:
+      - /root/docker-volumes/registry/registry:/var/lib/registry
+      - /root/docker-volumes/registry/auth:/auth
+
 volumes:
   db-data:
