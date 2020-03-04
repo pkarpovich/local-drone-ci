@@ -20,6 +20,8 @@ services:
       - DRONE_SERVER_PROTO=http
       - DRONE_ADMIN=${DRONE_ADMIN}
       - DRONE_USER_CREATE=username:${DRONE_ADMIN},admin:true
+    depends_on:
+      - relay-agent
 
   drone-agent:
     container_name: drone-agent
@@ -50,8 +52,6 @@ services:
     environment:
       - KEY=${RELAY_KEY}
       - SECRET=${RELAY_SECRET}
-    depends_on:
-      - drone-server
 
   registry:
     container_name: registry
