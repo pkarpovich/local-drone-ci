@@ -2,7 +2,6 @@ version: "3"
 
 services:
   drone-server:
-    container_name: drone-server
     image: drone/drone
     restart: always
     volumes:
@@ -24,7 +23,6 @@ services:
       - relay-agent
 
   drone-agent:
-    container_name: drone-agent
     image: drone/agent
     restart: always
     command: agent
@@ -41,7 +39,6 @@ services:
       - drone-server
 
   relay-agent:
-    container_name: relay-agent
     image: webhookrelay/webhookrelayd
     restart: always
     command:
@@ -54,9 +51,8 @@ services:
       - SECRET=${RELAY_SECRET}
 
   registry:
-    container_name: registry
     restart: always
-    image: 'registry:2'
+    image: 'registry:latest'
     ports:
       - "5000:5000"
     environment:
